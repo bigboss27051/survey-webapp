@@ -1,0 +1,30 @@
+{
+  "name": "DQ-Survey-App",
+  "version": "1.0.0",
+  "description": "My grand Nuxt.js project",
+  "author": "DQ",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.9.7",
+    "cookie-universal-nuxt": "^2.1.3",
+    "firebase": "^7.14.0",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "nuxt": "^2.0.0",
+    "vuex-persist": "^2.2.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.0.0",
+    "@vue/test-utils": "^1.0.0-beta.27",
+    "babel-jest": "^24.1.0",
+    "jest": "^24.1.0",
+    "vue-jest": "^4.0.0-0"
+  }
+}
