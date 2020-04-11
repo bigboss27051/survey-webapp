@@ -36,7 +36,6 @@
       </v-card>
     </v-col>
     <Loading :isLoading="isLoading" />
-    <ModalMsg title="Error" desc="test" />
   </v-row>
 </template>
 <script>
@@ -51,8 +50,7 @@ export default {
       valid: true,
       email: "",
       password: "",
-      isLoading: false,
-      isError: false
+      isLoading: false
     };
   },
   methods: {
@@ -61,19 +59,20 @@ export default {
     },
     async login() {
       if (this.$refs.form.validate()) {
-        this.$nuxt.$loading.start();
+        this.isLoading = true;
         try {
           await this.$store.dispatch("auth/login", {
             email: this.email,
             password: this.password
           });
-          this.$nuxt.$loading.finish();
+          this.isLoading = false;
           this.$router.push({
             name: "index"
           });
         } catch (error) {
-          this.$nuxt.$loading.fail(error);
-          this.isError = true;
+          console.log("catch ", error);
+          this.isLoading = false;
+          // alert.error(error.message);
         }
       }
     }

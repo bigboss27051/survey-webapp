@@ -41,7 +41,6 @@ export const actions = {
           accessToken: tokenResult?.token
         });
       } catch (error) {
-        console.log({ error });
         commit("setError", error);
         reject(error);
       }

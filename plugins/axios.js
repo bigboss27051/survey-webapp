@@ -1,5 +1,6 @@
 import _ from "lodash";
 import firebase from "../utils/firebase";
+
 export default ({ $axios, redirect, app }) => {
   $axios.onRequest(config => {
     const accessToken = app.$cookies.get("accessToken");
@@ -11,7 +12,6 @@ export default ({ $axios, redirect, app }) => {
   $axios.onError(async err => {
     let originalRequest = err.config;
     const code = parseInt(err.response && err.response.status);
-
     if (code === 400) {
       redirect("/400");
     }

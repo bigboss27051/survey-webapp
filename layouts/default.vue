@@ -19,8 +19,11 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
       <v-spacer></v-spacer>
-      <v-btn icon @click="goToLogin">
-        <v-icon>mdi-login</v-icon>
+      <v-btn class="ma-2" value="recent" @click="goToLogin">
+        <span>Login</span>
+      </v-btn>
+      <v-btn class="ma-2" value="recent" @click="goToLogin">
+        <span>Register</span>
       </v-btn>
     </v-app-bar>
     <v-content>
