@@ -1,12 +1,12 @@
 <template>
-  <Loing />
+  <LoginFromSubmit />
 </template>
-
 <script>
-import Loing from "@/components/auth/Loing";
+import LoingForm from "@/components/auth/LoingForm";
 export default {
+  name: "login-page",
   components: {
-    Loing
+    LoginFromSubmit: LoingForm
   }
 };
 </script>

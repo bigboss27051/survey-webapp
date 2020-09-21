@@ -11,7 +11,6 @@
             <v-text-field
               v-model="email"
               label="Email"
-              name="login"
               prepend-icon="person"
               type="text"
               :rules="[v => !!v || 'Email is required']"
@@ -43,6 +42,7 @@
 import Vue from "vue";
 import Loading from "@/components/common/Loading.vue";
 export default {
+  name: 'Login-form',
   components: {
     Loading
   },
