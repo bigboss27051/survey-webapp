@@ -21,7 +21,7 @@ export const actions = {
   ) {
     return new Promise(async (resolve, reject) => {
       try {
-        this.$axios.post(
+        const result = this.$axios.post(
           `${process.env.baseUrl}/api/${process.env.versionAPI}/questionnaires`,
           {
             name,
@@ -32,8 +32,8 @@ export const actions = {
             questions
           }
         );
-        commit("setSurvey", {});
-        resolve({});
+        commit("setSurvey", result);
+        resolve(result);
       } catch (error) {
         console.log({ error });
         commit("setError", error);
