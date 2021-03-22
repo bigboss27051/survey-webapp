@@ -21,6 +21,7 @@ export const actions = {
   ) {
     return new Promise(async (resolve, reject) => {
       try {
+        console.log('call')
         const result = this.$axios.post(
           `${process.env.baseUrl}/api/${process.env.versionAPI}/questionnaires`,
           {
