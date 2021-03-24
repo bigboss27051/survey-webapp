@@ -144,25 +144,35 @@
       </v-row>
     </v-form>
     <v-form ref="form" v-if="step === 3">
-      <v-text-field
-        placeholder="Define Question title"
-        v-model="questionTitle"
-        label="Question Title"
-        required
-      ></v-text-field>
-      <v-select
-        :items="['Single select', 'Multiple select']"
-        v-model="questionType"
-        label="Type"
-      ></v-select>
-      <v-textarea
-        v-model="questionAnswers"
-        label="Answer (One Answer per line)"
-        required
-      ></v-textarea>
+      <div v-for="(item, i) in questions" :key="i">
+        <v-text-field
+          placeholder="Define Question title"
+          v-model="questionTitle"
+          label="Question Title"
+          required
+        ></v-text-field>
+        <v-select
+          :items="['Single select', 'Multiple select']"
+          v-model="questionType"
+          label="Type"
+        ></v-select>
+        <v-textarea
+          v-model="questionAnswers"
+          label="Answer (One Answer per line)"
+          required
+        ></v-textarea>
+      </div>
+
       <v-row>
         <v-col cols="12">
-          <v-btn color="primary" rounded depressed outlined>Add Question</v-btn>
+          <v-btn
+            color="primary"
+            @click="addFormQuestion"
+            rounded
+            depressed
+            outlined
+            >Add Question</v-btn
+          >
         </v-col>
       </v-row>
       <v-row justify="center">
@@ -189,7 +199,14 @@ export default {
       targetAge: [18, 65],
       targetEducationLevel: [],
       targetMonthlyIncome: [],
-      question: [],
+      questions: [
+        {
+          type: "",
+          name: "",
+          answers: [{ name: "" }],
+          answer: { name: "" },
+        },
+      ],
       questionTitle: "",
       questionType: "",
       questionAnswers: "",
@@ -199,6 +216,14 @@ export default {
     gotoStep(step) {
       this.step = step;
     },
+    addFormQuestion() {
+      this.questions.push({
+        type: "",
+        name: "",
+        answers: [{ name: "" }],
+        answer: { name: "" },
+      });
+    },
     async create() {
       try {
         console.log("test");
@@ -207,11 +232,32 @@ export default {
           console.log("test 00");
           const questions = [
             {
-              type: this.questionType,
-              name: this.questionTitle,
+              type: "single",
+              name: "Q1",
               answers: [
                 {
-                  name: this.questionAnswers,
+                  name: "1",
+                },
+                {
+                  name: "2",
+                },
+                {
+                  name: "3",
+                },
+              ],
+            },
+            {
+              type: "multiple",
+              name: "Q1",
+              answers: [
+                {
+                  name: "1",
+                },
+                {
+                  name: "2",
+                },
+                {
+                  name: "3",
                 },
               ],
             },
@@ -222,7 +268,7 @@ export default {
             desc: this.surveyDesciption,
             budget: this.surveyLimitBudget,
             participant: this.targetLimitParticipant,
-            targetGroup: null,
+            targetGroup: "",
             questions,
           };
           console.log("test 2");
