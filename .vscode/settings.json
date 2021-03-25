@@ -1,7 +1,24 @@
 {
-    "workbench.colorCustomizations": {
-        "activityBar.background": "#97C15B",
-        "titleBar.activeBackground": "#A4C96F",
-        "titleBar.activeForeground": "#151C0A"
-    }
+	"java.configuration.updateBuildConfiguration": "automatic",
+	"path-intellisense.mappings": {
+		"~/": "${workspaceRoot}/src"
+	},
+	"git.ignoreLimitWarning": true,
+	"editor.tabSize": 2,
+	"editor.tokenColorCustomizations": {
+		// "variables": "#FF0000",
+		// "comments": "#FF0000"
+	},
+	"editor.formatOnSave": true,
+	"eslint.autoFixOnSave": true,
+	"eslint.alwaysShowStatus": true,
+	"workbench.colorCustomizations": {
+		"activityBar.background": "#ffce72",
+		"activityBar.foreground": "#000",
+		"activityBarBadge.foreground": "#fff",
+		"activityBarBadge.background": "#ff0000",
+		"titleBar.activeBackground": "#ffb326",
+		"titleBar.activeForeground": "#000"
+	},
+	""
 }

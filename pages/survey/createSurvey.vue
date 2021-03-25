@@ -144,23 +144,43 @@
       </v-row>
     </v-form>
     <v-form ref="form" v-if="step === 3">
-      <div v-for="(item, i) in questions" :key="i">
+      <div v-for="(question, qIndex) in questions" :key="qIndex">
         <v-text-field
           placeholder="Define Question title"
-          v-model="questionTitle"
+          v-model="question.name"
           label="Question Title"
           required
         ></v-text-field>
         <v-select
           :items="['Single select', 'Multiple select']"
-          v-model="questionType"
+          v-model="question.type"
           label="Type"
         ></v-select>
-        <v-textarea
-          v-model="questionAnswers"
-          label="Answer (One Answer per line)"
+
+        <v-text-field
+          placeholder="question.answer.name"
+          v-model="question.answer.name"
+          label="question.answer.name"
           required
-        ></v-textarea>
+        ></v-text-field>
+
+        <div v-for="(answer, aIndex) in question.answers" :key="aIndex">
+          <v-text-field
+            placeholder="answer.name"
+            v-model="answer.name"
+            label="answer.name"
+            required
+          ></v-text-field>
+        </div>
+
+        <v-btn
+          color="primary"
+          @click="addFormAnswers(qIndex, aIndex)"
+          rounded
+          depressed
+          outlined
+          >Add Answer</v-btn
+        >
       </div>
 
       <v-row>
@@ -215,6 +235,11 @@ export default {
   methods: {
     gotoStep(step) {
       this.step = step;
+    },
+    addFormAnswers(qIndex, aIndex) {
+      this.questions[qIndex].answers.push({
+        name: "",
+      });
     },
     addFormQuestion() {
       this.questions.push({
