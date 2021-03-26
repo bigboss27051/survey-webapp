@@ -296,9 +296,9 @@ export default {
             const res = await this.$store.dispatch("survey/create", body);
             console.log(res);
             this.$nuxt.$loading.finish();
-            this.$router.push({
-              name: "index",
-            });
+            // this.$router.push({
+            //   name: "index",
+            // });
           } catch (error) {
             this.$nuxt.$loading.fail(error);
             this.isError = true;

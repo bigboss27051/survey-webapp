@@ -5,7 +5,7 @@ export default ({ $axios, redirect, app }) => {
   $axios.onRequest(config => {
     const accessToken = app.$cookies.get("accessToken");
     if (accessToken) {
-      config.headers.common["authoriaztion"] = accessToken;
+      config.headers.common["Authorization"] = accessToken;
       // config.headers.common["authoriaztion"] = `Bearer ${accessToken}`;
 
     }
