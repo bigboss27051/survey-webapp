@@ -145,19 +145,24 @@
     </v-form>
     <v-form ref="form" v-if="step === 3">
       <div v-for="(question, qIndex) in questions" :key="qIndex">
+        <h4>Question: {{ qIndex + 1 }}</h4>
         <v-text-field
+          :aria-placeholder="`${qIndex}`"
           placeholder="Define Question title"
           v-model="question.name"
           label="Question Title"
           required
         ></v-text-field>
         <v-select
-          :items="['Single select', 'Multiple select']"
+          item-text="text"
+          item-value="value"
+          :items="answerTypes"
           v-model="question.type"
           label="Type"
         ></v-select>
 
         <v-text-field
+          v-if="question.type == 'single'"
           placeholder="question.answer.name"
           v-model="question.answer.name"
           label="question.answer.name"
@@ -165,7 +170,9 @@
         ></v-text-field>
 
         <div v-for="(answer, aIndex) in question.answers" :key="aIndex">
+          <h4 v-if="question.type == 'multiple'">Answer: {{ aIndex + 1 }}</h4>
           <v-text-field
+            v-if="question.type == 'multiple'"
             placeholder="answer.name"
             v-model="answer.name"
             label="answer.name"
@@ -230,6 +237,16 @@ export default {
       questionTitle: "",
       questionType: "",
       questionAnswers: "",
+      answerTypes: [
+        {
+          value: "single",
+          text: "Single select",
+        },
+        {
+          value: "multiple",
+          text: "Multiple select",
+        },
+      ],
     };
   },
   methods: {
@@ -255,38 +272,13 @@ export default {
         // if (this.$refs.form.validate()) {
         if (true) {
           console.log("test 00");
-          const questions = [
-            {
-              type: "single",
-              name: "Q1",
-              answers: [
-                {
-                  name: "1",
-                },
-                {
-                  name: "2",
-                },
-                {
-                  name: "3",
-                },
-              ],
-            },
-            {
-              type: "multiple",
-              name: "Q1",
-              answers: [
-                {
-                  name: "1",
-                },
-                {
-                  name: "2",
-                },
-                {
-                  name: "3",
-                },
-              ],
-            },
-          ];
+          const questions = this.questions.map((question) => {
+            return {
+              ...question,
+              answers:
+                question.type == "single" ? question.answer : question.answers,
+            };
+          });
           console.log("test 02");
           const body = {
             name: this.surveyName,

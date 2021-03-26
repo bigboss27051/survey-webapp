@@ -6,6 +6,8 @@ export default ({ $axios, redirect, app }) => {
     const accessToken = app.$cookies.get("accessToken");
     if (accessToken) {
       config.headers.common["authoriaztion"] = accessToken;
+      // config.headers.common["authoriaztion"] = `Bearer ${accessToken}`;
+
     }
   });
 
