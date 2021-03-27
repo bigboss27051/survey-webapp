@@ -11,37 +11,44 @@
       app
     >
       <v-list>
-        <v-list-group
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-          id="list-group-vending"
-          no-action
-          value="true"
-        >
-          <template v-slot:activator>
-            <v-list-item-action>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title v-text="item.text" />
-            </v-list-item-content>
-          </template>
-
-          <v-list-item
-            v-for="(child, cIndex) in item.children"
-            link
-            :key="cIndex"
-            :to="child.to"
-          >
+        <template v-for="(item, i) in items">
+          <v-list-item v-if="!item.children" link :key="i" :to="item.to">
             <v-list-item-action>
               <v-icon>mdi-label</v-icon>
             </v-list-item-action>
-            <v-list-item-title v-text="child.text"></v-list-item-title>
+            <v-list-item-title v-text="item.text"></v-list-item-title>
           </v-list-item>
-        </v-list-group>
+
+          <v-list-group
+            :key="i"
+            v-if="item.children"
+            router
+            exact
+            id="list-group-vending"
+            no-action
+          >
+            <template v-slot:activator>
+              <v-list-item-action>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title v-text="item.text" />
+              </v-list-item-content>
+            </template>
+
+            <v-list-item
+              v-for="(child, cIndex) in item.children"
+              link
+              :key="cIndex"
+              :to="child.to"
+            >
+              <v-list-item-action>
+                <v-icon>mdi-label</v-icon>
+              </v-list-item-action>
+              <v-list-item-title v-text="child.text"></v-list-item-title>
+            </v-list-item>
+          </v-list-group>
+        </template>
       </v-list>
     </v-navigation-drawer>
     <v-app-bar color="primary" :clipped-left="clipped" fixed app>
