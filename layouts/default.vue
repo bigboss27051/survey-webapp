@@ -86,22 +86,21 @@ export default {
       // {
       //   icon: "mdi-check-circle",
       //   text: "Survey",
-      //   to: "/survey/createSurvey",
+      //   to: "/survey/create",
       // },
       {
         icon: "mdi-check-circle",
         text: "Survey",
-        to: "/survey/createSurvey",
         children: [
           {
             icon: "mdi-check-circle",
             text: "Create survey",
-            to: "/survey/createSurvey",
+            to: "/survey/create",
           },
           {
             icon: "mdi-check-circle",
             text: "View survey",
-            to: "/survey/createSurvey",
+            to: "/survey",
           },
         ],
       },
