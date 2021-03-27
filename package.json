@@ -9,7 +9,8 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "test": "jest"
+    "test": "jest",
+    "firebase-deploy": "firebase deploy --token 1//0gs1VWphUAaMiCgYIARAAGBASNwF-L9IrveuiswhfAzk0WSKV13cwMvRHZ7Z6bk-fBuh01UAjKtJG3wRt2JMdIg4DN_b6URho3pY"
   },
   "dependencies": {
     "@nuxtjs/axios": "5.9.7",
